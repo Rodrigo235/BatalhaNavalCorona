@@ -2,9 +2,8 @@ tabuleiroView = {}
 
 function tabuleiroView:constroiTabuleiro()
 
-	local 
 	local deslocamentoX = 0
-	local deslocamentoY = 0
+	local deslocamentoY = display.actualContentWidth * 0.25
 	local tamanhoDoQuadrado = 25
 
 	local tabuleiroCriado = {

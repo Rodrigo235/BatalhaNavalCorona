@@ -3,10 +3,10 @@ local N = {}
 function N:gerarNavios()
 
 	local navios = {
-		Rebocador = {id = 1, tamanho = 2, orientacao = {"vertical", "horizontal"}},
-		Contratorpedo = {id = 2, tamanho = 3, orientacao = {"vertical", "horizontal"}},
-		Cruzador = {id = 3, tamanho = 4, orientacao = {"vertical", "horizontal"}},
-		PortaAvioes = {id = 4, tamanho = 5, orientacao = {"vertical", "horizontal"}}
+		Rebocador = {id = 1, tamanho = 2, orientacao = {"vertical", "horizontal"}, rgb = {1, 0, 0}},
+		Contratorpedo = {id = 2, tamanho = 3, orientacao = {"vertical", "horizontal"}, rgb = {0, 1, 0}},
+		Cruzador = {id = 3, tamanho = 4, orientacao = {"vertical", "horizontal"}, rgb = {0, 0, 1}},
+		PortaAvioes = {id = 4, tamanho = 5, orientacao = {"vertical", "horizontal"}, rgb = {1, 1, 1}}
 	}
 
 	return navios
