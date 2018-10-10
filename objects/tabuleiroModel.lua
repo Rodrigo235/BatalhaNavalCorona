@@ -1,7 +1,7 @@
 local mapa = {}
 local navio = require "objects.naviosModel"
 
-function mapa:getMapa()
+function mapa:newMapa(preenchimento)
 	local tabuleiroCriado = {
 		{},
 		{},
@@ -19,7 +19,7 @@ function mapa:getMapa()
 	
 		for j = 1, 10 do
 
-			tabuleiroCriado[i][j] = 0
+			tabuleiroCriado[i][j] = preenchimento
 
 		end
 	end

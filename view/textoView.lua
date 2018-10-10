@@ -1,8 +1,9 @@
-local texto = {}
 local navio = require "objects.naviosModel"
+
+local texto = {}
 local id = 1
 
-local listaNavios = navio:getNavios()
+local listaNavios = navio:newNavios()
 
 function texto:newTexto(nome, mensagem, x, y, tamanhoFont, cor)
 	if cor == nil then cor = {1, 1, 1} end
