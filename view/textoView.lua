@@ -1,7 +1,22 @@
 local texto = {}
+local navio = require "objects.naviosModel"
+local id = 1
 
-function texto:newTexto(nome, mensagem, x, y, tamanhoFont)
-	table.insert(texto, {id = nome, texto = display.newText(mensagem, x, y, native.systemFontBold, tamanhoFont)})
+local listaNavios = navio:getNavios()
+
+function texto:newTexto(nome, mensagem, x, y, tamanhoFont, cor)
+	if cor == nil then cor = {1, 1, 1} end
+
+	if (nome == "navio") then
+		for k,v in pairs(listaNavios) do
+			if(v.id == id) then
+				mensagem = k
+				cor = {v.rgb[1], v.rgb[2], v.rgb[3]}
+			end
+		end
+		id = id + 1
+	end
+	table.insert(texto, {id = nome, texto = display.newText(mensagem, x, y, native.systemFontBold, tamanhoFont):setFillColor(cor[1], cor[2], cor[3])})
 end
 
 function texto:setTexto(nome, mensagem)

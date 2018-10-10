@@ -1,6 +1,6 @@
 tabuleiroView = {}
 
-function tabuleiroView:constroiTabuleiro()
+function tabuleiroView:getTabuleiro()
 
 	local deslocamentoX = 0
 	local deslocamentoY = display.actualContentWidth * 0.25
