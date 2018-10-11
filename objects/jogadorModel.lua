@@ -1,5 +1,6 @@
 local naviosModel = require "objects.naviosModel"
 local tabuleiroModel = require "objects.tabuleiroModel"
+
 local jogador = {}
 
 

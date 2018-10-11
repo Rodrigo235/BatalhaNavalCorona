@@ -1,6 +1,6 @@
-local N = {}
+local Navios = {}
 
-function N:newNavios()
+function Navios:newNavios()
 
 	local navios = {
 		Submarino = {id = 1, tamanho = 1, rgb = {0.5, 0, 1}},
@@ -14,4 +14,12 @@ function N:newNavios()
 
 end
 
-return N
+function Navios:findById(id)
+	for k,v in pairs(Navios:newNavios()) do
+		if (v.id == id) then
+			return k, v
+		end
+	end
+end
+
+return Navios

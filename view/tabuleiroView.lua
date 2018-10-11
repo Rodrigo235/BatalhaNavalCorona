@@ -1,8 +1,10 @@
 local jogadorModel = require "objects.jogadorModel"
+local tabuleiroModel = require "objects.tabuleiroModel"
+local naviosModel = require "objects.naviosModel"
 
 local tabuleiroView = {}
 
-local id = 1
+local id = 2
 local primeiroClique
 local segundoClique
 
@@ -50,35 +52,29 @@ end
 
 function fazJogada(event)
 	
+	local nomeNavio, navioDaVez = naviosModel:findById(id)
+
 	if event.phase == "began" then
 		if (primeiroClique == nil) then
 			primeiroClique = {linha = event.target.linha, coluna = event.target.coluna}
-			print("Primeiro Clique setado")
 			event.target:removeEventListener("touch", fazJogada)
 		elseif (segundoClique == nil) then
 			segundoClique = {linha = event.target.linha, coluna = event.target.coluna}
-			print("Segundo Clique setado")
 			event.target:removeEventListener("touch", fazJogada)
 
-			if(tabuleiroView:checarJogada(primeiroClique, segundoClique) ~= nil) then
-				
+			local orientacao = tabuleiroModel:checarJogada(primeiroClique, segundoClique)
+
+			if(orientacao ~= nil) then
+				jogador.mapa = tabuleiroModel:inserirNavio(jogador, event.target.linha, event.target.coluna, jogador.navios.navioDaVez, orientacao)
 			end
 
 		end
-		event.target:setFillColor(1, 1, 1)
+		event.target:setFillColor(navioDaVez.rgb[1], navioDaVez.rgb[2], navioDaVez.rgb[3])
 	end
 end
 
 function tabuleiroView:attEstado()
 	
-end
-
-function tabuleiroView:checarJogada(clique1, clique2)
-	local orientacao = {linha = clique2.linha - clique1.linha, 
-						coluna = clique2.coluna - clique1.coluna}
-
-	if (orientacao.linha ~= 0 and orientacao.coluna ~= 0) then return nil end
-	return true, orientacao
 end
 
 return tabuleiroView
