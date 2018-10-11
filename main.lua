@@ -9,5 +9,4 @@ texto:newTexto("titulo", "Batalha Naval", largura / 2, altura * 0.05, 40)
 texto:newTexto("navio", "", largura / 2, altura * 0.8, 30)
 texto:newTexto("info", "Adicione o Navio", largura / 2, altura * 0.7, 30)
 
---texto:setTexto("navio", "lalala")
-
+--texto:setTexto("titulo", "lalala")

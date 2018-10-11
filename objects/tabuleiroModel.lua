@@ -36,47 +36,47 @@ function mapa:podeInserir(argMapa, argLinha, argColuna, argNavio, argOrientacao)
 	-- 	return false 
 	-- end
 
-	if (argNavio.orientacao[argOrientacao] == "vertical") then
+	--if (argNavio.orientacao[argOrientacao] == "vertical") then
 
-		for i = 0, argNavio.tamanho - 1 do
-			if (argMapa[argLinha + i][argColuna] ~= 0) then
-				print("Colisao com outro navio")
-				return false, "Colisao com outro navio"
-			end
-		end
-	elseif (argNavio.orientacao[argOrientacao] == "horizontal") then
-
-		for i = 0, argNavio.tamanho - 1 do
-			if(argMapa[argLinha][argColuna + i] ~= 0) then
-				print()
-				return false, "Colisao com outro navio"
-			end
+	for i = 0, argNavio.tamanho - 1 do
+		if (argMapa[argLinha + argOrientacao.linha][argColuna + argOrientacao.coluna] ~= 0) then
+			
+			return false, "Colisao com outro navio"
 		end
 	end
+	--elseif (argNavio.orientacao[argOrientacao] == "horizontal") then
 
-	return true
+	-- 	for i = 0, argNavio.tamanho - 1 do
+	-- 		if(argMapa[argLinha][argColuna + i] ~= 0) then
+	-- 			print()
+	-- 			return false, "Colisao com outro navio"
+	-- 		end
+	-- 	end
+	-- end
+
+	return true, "OK!"
 
 end
 
 ------------------------------posiciona o Navio no mapa--------------------------------
 
 function mapa:inserirNavio(argJogador, argLinha, argColuna, argNavio, argOrientacao)
-	local mapa = argJogador.mapa
-
-	local podeInserir, erro = mapa:podeInserir(mapa, argLinha, argColuna, argNavio, argOrientacao)
+	local mapaDoJogador = argJogador.mapa
+	print(mapaDoJogador)
 	
+	local podeInserir, erro = mapa:podeInserir(mapaDoJogador, argLinha, argColuna, argNavio, argOrientacao)
+
 	--if (argNavio.orientacao[argOrientacao] == "vertical") then
 	if (podeInserir == true) then
 
 		for i = 0, argNavio.tamanho - 1 do
-			mapa[argLinha + argOrientacao.linha][argColuna + argOrientacao.coluna] = argNavio.id
+			mapaDoJogador[argLinha + argOrientacao.linha][argColuna + argOrientacao.coluna] = argNavio.id
 		end
 
 		return mapa
 
 	else
 		return erro
-
 	end
 
 	-- elseif (argNavio.orientacao[argOrientacao] == "horizontal") then
@@ -111,5 +111,7 @@ function mapa:checarJogada(clique1, clique2)
 	
 	return orientacao
 end
+
+
 
 return mapa
