@@ -62,18 +62,19 @@ end
 
 function mapa:inserirNavio(argJogador, argLinha, argColuna, argNavio, argOrientacao)
 	local mapaDoJogador = argJogador.mapa
-	print(mapaDoJogador)
-	
+
 	local podeInserir, erro = mapa:podeInserir(mapaDoJogador, argLinha, argColuna, argNavio, argOrientacao)
 
 	--if (argNavio.orientacao[argOrientacao] == "vertical") then
 	if (podeInserir == true) then
 
-		for i = 0, argNavio.tamanho - 1 do
-			mapaDoJogador[argLinha + argOrientacao.linha][argColuna + argOrientacao.coluna] = argNavio.id
+		for i = 1, argNavio.tamanho do
+			mapaDoJogador[argLinha][argColuna] = argNavio.id
+			argLinha = argLinha + argOrientacao.linha
+			argColuna = argColuna + argOrientacao.coluna
 		end
-
-		return mapa
+		print(mapa:toString(mapaDoJogador))
+		return mapaDoJogador
 
 	else
 		return erro
@@ -112,6 +113,17 @@ function mapa:checarJogada(clique1, clique2)
 	return orientacao
 end
 
+function mapa:toString(argMapa)
+	local str = ""
 
+	for i = 1, #argMapa do
+		for j = 1, #argMapa[i] do
+			str = str ..argMapa[i][j]
+		end
+		str = str .."\n"
+	end
+
+	return str
+end
 
 return mapa

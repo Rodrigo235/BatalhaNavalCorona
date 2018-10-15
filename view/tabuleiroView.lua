@@ -11,12 +11,6 @@ local segundoClique
 
 local jogador = jogadorModel:newJogador("Nekrols")
 
-for k,v in pairs(jogador.mapa) do
-	for k1,v1 in pairs(v) do
-		print(k1,v1)
-	end
-end
-
 function tabuleiroView:newTabuleiro()
 
 	local deslocamentoX = 0
@@ -72,7 +66,15 @@ function fazJogada(event)
 			local orientacao = tabuleiroModel:checarJogada(primeiroClique, segundoClique)
 
 			if(orientacao ~= nil) then
-				jogador.mapa = tabuleiroModel:inserirNavio(jogador, event.target.linha, event.target.coluna, navioDaVez, orientacao)
+				print("1º Linha ______ " ..primeiroClique.linha)
+				print("1º Coluna ______ " ..primeiroClique.coluna)
+
+				print("2º Linha ______ " ..segundoClique.linha)
+				print("2º Coluna ______ " ..segundoClique.coluna)
+
+				print("Orientacao Linha: ________" ..orientacao.linha)
+				print("Orientacao Coluna: ________" ..orientacao.coluna)
+				jogador.mapa = tabuleiroModel:inserirNavio(jogador, primeiroClique.linha, primeiroClique.coluna, navioDaVez, orientacao)
 				tabuleiroView:attEstado(jogador)
 
 				primeiroClique = nil
@@ -89,13 +91,10 @@ function tabuleiroView:attEstado(argJogador)
 	
 	print("entrou no attEstado" ..#argJogador.mapa)
 	for i = 1, #argJogador.mapa do
-		print("primeiro for ___________" ..#argJogador.mapa)
 		for j = 1, #argJogador.mapa[i] do
-			print("segundo for______________" ..#argJogador.mapa[i])
 			if(argJogador.mapa[i][j] ~= 0) then
 				for k,v in pairs(argJogador.navios) do
 					if(v.id == argJogador.mapa[i][j]) then
-						print("chegou no ultimo IF")
 						tabuleiroView.tabuleiroCriado[i][j]:setFillColor(v.rgb[1], v.rgb[2], v.rgb[3])
 					end
 				end
